@@ -17,12 +17,12 @@ void PatientDatabaseLoader::loadPatients(std::vector<Patient*>& patientIn){
     // we simulate loading patients from a database here.
 
     // initialise a birthday from a string. This code can be reused to when loading a birthday from a file
-    std::tm t{ };
+    std::tm birthday{};
     std::istringstream ss("18-02-1980");
-    ss >> std::get_time(&t, "%d-%m-%Y");
+    ss >> std::get_time(&birthday, "%d-%m-%Y");
 
     // push back a new Patient
-    Patient* p = new Patient("Joe", "Bloggs", t);
+    Patient* p = new Patient("Joe", "Bloggs", birthday);
     p->addDiagnosis(Diagnosis::CORDYCEPS_BRAIN_INFECTION);
 
     Vitals* v = new Vitals(37.5f, 80, 60, 16);

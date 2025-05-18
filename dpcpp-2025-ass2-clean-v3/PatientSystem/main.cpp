@@ -6,10 +6,12 @@
 #include <string>
 
 #include "PatientManagementSystem.h"
+#include "PatientFileAdapter.h"
 
 int main()
 {
-	auto pms = std::make_unique<PatientManagementSystem>();
+	auto loader_type = std::make_unique<PatientFileAdapter>();
+	auto pms = std::make_unique<PatientManagementSystem>(std::move(loader_type));
 
 	pms->init();
 	pms->run();

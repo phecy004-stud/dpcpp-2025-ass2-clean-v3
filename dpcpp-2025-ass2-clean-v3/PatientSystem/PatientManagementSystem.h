@@ -17,7 +17,7 @@ class PatientManagementSystem
 {
 public:
 
-	PatientManagementSystem();
+	PatientManagementSystem(std::unique_ptr<AbstractPatientDatabaseLoader> loader);
 	~PatientManagementSystem();
 
 	// initialise the patient records
