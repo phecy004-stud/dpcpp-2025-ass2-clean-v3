@@ -77,5 +77,8 @@
     <ClInclude Include="PatientFileAdapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CompositePatientLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
