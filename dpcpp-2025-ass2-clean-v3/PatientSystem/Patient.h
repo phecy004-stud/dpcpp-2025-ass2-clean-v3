@@ -1,10 +1,12 @@
 #pragma once
+#include <memory> // Ensure this is included for std::unique_ptr
 #include "Person.h"
 
 #include <memory>
 #include <vector>
 
 #include "PatientAlertLevels.h"
+#include "IAlertLevelStrategy.h"
 
 
 // forward declare classes
@@ -51,7 +53,7 @@ protected:
 	std::vector<std::string> _diagnosis;
 	std::vector<const Vitals*> _vitals;
 	AlertLevel _alertLevel;
-
 	friend std::ostream& operator<<(std::ostream& os, const Patient& p);
+	std::unique_ptr<IAlertLevelStrategy> _alertStrategy;
 };
 

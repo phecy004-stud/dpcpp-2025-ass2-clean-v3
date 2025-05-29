@@ -1,5 +1,9 @@
 #include "Patient.h"
 
+#include "CordycepsBrainInfectionStategy.h"
+#include "KepralsSyndromeStategy.h"
+#include "AndromedaStrainStategy.h"
+
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -59,6 +63,24 @@ std::ostream& operator<<(std::ostream& os, const Patient& p)
 void Patient::addDiagnosis(const std::string& diagnosis)
 {
 	_diagnosis.push_back(diagnosis);
+
+	if (_diagnosis.size() == 1) { // Only set the alert strategy for the primary diagnosis
+
+		if (diagnosis == Diagnosis::CORDYCEPS_BRAIN_INFECTION) {
+			_alertStrategy = std::make_unique<CordycepsBrainInfectionStategy>();
+		}
+		else if (diagnosis == Diagnosis::KEPRALS_SYNDROME) {
+			auto strategy = std::make_unique<KepralsSyndromeStategy>();
+			strategy->setPatient(this);
+			_alertStrategy = std::move(strategy);
+		}
+		else if (diagnosis == Diagnosis::ANDROMEDA_STRAIN) {
+			_alertStrategy = std::make_unique<AndromedaStrainStategy>();
+		}
+		else {
+			_alertStrategy.reset();
+		}
+	}
 }
 
 const std::string& Patient::primaryDiagnosis() const
@@ -70,6 +92,10 @@ void Patient::addVitals(const Vitals* v)
 {
 	_vitals.push_back(v);
 	// TODO: calculate alert levels
+	if (_alertStrategy) {
+		AlertLevel newLevel = _alertStrategy->calculateAlertLevel(_vitals);
+		setAlertLevel(newLevel);
+	}
 }
 
 const std::vector<const Vitals*> Patient::vitals() const
@@ -81,7 +107,7 @@ void Patient::setAlertLevel(AlertLevel level)
 {
 	_alertLevel = level;
 
-	if (_alertLevel > AlertLevel::Green) {
+	if (level > AlertLevel::Green) {
 		cout << "Patient: " << humanReadableID() << "has an alert level: ";
 		switch (_alertLevel) {
 		case AlertLevel::Yellow:
