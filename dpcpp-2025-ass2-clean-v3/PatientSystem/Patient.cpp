@@ -10,7 +10,7 @@
 using namespace std;
 
 const std::string Diagnosis::CORDYCEPS_BRAIN_INFECTION = "Cordyceps Brain Infection";
-const std::string Diagnosis::KEPRALS_SYNDROME = "Kepral’s Syndrome";
+const std::string Diagnosis::KEPRALS_SYNDROME = "Kepral's Syndrome";
 const std::string Diagnosis::ANDROMEDA_STRAIN= "Andromeda Strain";
 
 
