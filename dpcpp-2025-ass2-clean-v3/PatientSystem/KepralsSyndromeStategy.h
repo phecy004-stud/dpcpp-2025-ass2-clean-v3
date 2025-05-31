@@ -1,6 +1,6 @@
 #pragma once  
-#include "IAlertLevelStrategy.h"  
-#include "Patient.h"
+#include <vector>
+#include "IAlertLevelStrategy.h"
 
 class KepralsSyndromeStategy : public IAlertLevelStrategy { 
 

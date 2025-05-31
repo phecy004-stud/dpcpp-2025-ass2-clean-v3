@@ -108,7 +108,7 @@ void Patient::setAlertLevel(AlertLevel level)
 	_alertLevel = level;
 
 	if (level > AlertLevel::Green) {
-		cout << "Patient: " << humanReadableID() << "has an alert level: ";
+		cout << "Patient: " << humanReadableID() << " has an alert level: ";
 		switch (_alertLevel) {
 		case AlertLevel::Yellow:
 			cout << "Yellow";
