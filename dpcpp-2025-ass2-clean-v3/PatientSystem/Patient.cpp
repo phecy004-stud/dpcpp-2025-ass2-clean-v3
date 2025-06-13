@@ -3,6 +3,7 @@
 #include "CordycepsBrainInfectionStategy.h"
 #include "KepralsSyndromeStategy.h"
 #include "AndromedaStrainStategy.h"
+#include "IAlertObserver.h"
 
 #include <iomanip>
 #include <iostream>
@@ -121,5 +122,20 @@ void Patient::setAlertLevel(AlertLevel level)
 			break;
 		}
 		cout << endl;
+
+		if (level == AlertLevel::Red) {
+			notifyObservers();  //Only notify observers when alert level becomes Red
+		}
 	}
+}
+
+void Patient::notifyObservers() { //Notify all observers (receivers like the GPs and Hospital) of the alert level change
+
+	for (const auto& observer : _observers) {
+		observer->update(this);
+	}
+}
+
+void Patient::addAlertObserver(std::shared_ptr<IAlertObserver> observer) { //Add an observer to the list of observers
+	_observers.push_back(observer);
 }

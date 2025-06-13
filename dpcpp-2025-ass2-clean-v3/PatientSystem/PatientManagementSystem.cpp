@@ -11,6 +11,9 @@
 
 #include "GPNotificationSystemFacade.h"
 #include "HospitalAlertSystemFacade.h"
+#include "GPAlertObserver.h"
+#include "HospitalAlertObserver.h"
+#include "IAlertObserver.h"
 
 using namespace std;
 
@@ -38,10 +41,9 @@ void PatientManagementSystem::init()
 	_patientDatabaseLoader->loadPatients(_patients);
 	for (Patient* p : _patients) {
 		_patientLookup[p->uid()] = p;
-	}
 
-	for (Patient* p : _patients) {
-		// TODO: do any processing you need here
+		p->addAlertObserver(std::make_unique<GPAlertObserver>(_gpNotificationSystem.get()));
+		p->addAlertObserver(std::make_unique<HospitalAlertObserver>(_hospitalAlertSystem.get()));
 	}
 }
 

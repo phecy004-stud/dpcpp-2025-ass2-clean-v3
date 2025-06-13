@@ -157,9 +157,12 @@
     <ClInclude Include="AndromedaStrainStategy.h" />
     <ClInclude Include="CompositePatientLoader.h" />
     <ClInclude Include="CordycepsBrainInfectionStategy.h" />
+    <ClInclude Include="GPAlertObserver.h" />
     <ClInclude Include="GPNotificationSystemFacade.h" />
+    <ClInclude Include="HospitalAlertObserver.h" />
     <ClInclude Include="HospitalAlertSystemFacade.h" />
     <ClInclude Include="IAlertLevelStrategy.h" />
+    <ClInclude Include="IAlertObserver.h" />
     <ClInclude Include="KepralsSyndromeStategy.h" />
     <ClInclude Include="PatientAlertLevels.h" />
     <ClInclude Include="Patient.h" />

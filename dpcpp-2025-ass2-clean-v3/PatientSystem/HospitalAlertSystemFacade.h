@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Patient.h"
-
+#include "IAlertObserver.h"
 
 class HospitalAlertSystemFacade
 {

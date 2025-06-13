@@ -11,6 +11,7 @@
 
 // forward declare classes
 class Vitals;
+class IAlertObserver;
 
 class Diagnosis {
 public:
@@ -49,11 +50,16 @@ public:
 	void setAlertLevel(AlertLevel level);
 	const AlertLevel alertLevel() const { return _alertLevel; }
 
+	//FR4: Functions to manage alert observers
+	void notifyObservers();
+	void addAlertObserver(std::shared_ptr<IAlertObserver> observer);
+
 protected:
 	std::vector<std::string> _diagnosis;
 	std::vector<const Vitals*> _vitals;
 	AlertLevel _alertLevel;
 	friend std::ostream& operator<<(std::ostream& os, const Patient& p);
 	std::unique_ptr<IAlertLevelStrategy> _alertStrategy;
+	std::vector<std::shared_ptr<IAlertObserver>> _observers;
 };
 

@@ -101,5 +101,14 @@
     <ClInclude Include="AndromedaStrainStategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IAlertObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GPAlertObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HospitalAlertObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
